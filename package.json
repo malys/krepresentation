@@ -1,0 +1,17 @@
+{
+  "name": "keycloak-graphical-representation",
+  "version": "0.1.0",
+  "description": "Generate quick representation of realm configuration based on plantuml",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "malys <mays@mageos.com>",
+  "license": "ISC",
+  "dependencies": {
+    "nunjucks": "^3.2.2",
+    "simple-oauth2": "^4.2.0",
+    "sync-request": "^6.1.0",
+    "yargs": "^16.2.0"
+  }
+}
