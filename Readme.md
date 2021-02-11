@@ -39,6 +39,7 @@ npm install
 
 ```
 node index.js -u {{user}} -p {{password}} -s {{keycloak server url}} -m {{realm name}} -o {{realm name}}.puml
+# -n to enable notes
 ```
 example:
 ```
@@ -57,6 +58,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 * Manage roles, realm, client
 * Filter default clients and roles
+* Convert description to notes using `-n` option
 
 
 ## TODO

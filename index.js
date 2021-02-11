@@ -23,6 +23,9 @@ class "{{role.name}}" << (r,Chartreuse) Role >> {
     {static} composite: {{role.composite}}  
 }
 "{{realm}}" *-- "{{role.name}}"
+{% if role.description and note %}
+note left: {{role.description}}
+{% endif %}
 {% endif %}
 {% endfor %}
 
@@ -35,6 +38,7 @@ class "{{role.name}}" << (r,GreenYellow) Role >> {
     {static} clientRole: {{role.clientRole}}  
 }
 "{{roleC}}" *-- "{{role.name}}"
+{% if role.description and note %}note left: {{role.description}}{% endif %}
 {% endfor %}
 {% endif %}
 {% endfor %}
@@ -70,6 +74,7 @@ class "{{client.clientTemplate}}" << (T,LightBlue) Template >> {
 "{{client.clientTemplate}}" <|-- "{{client.clientId}}"
 {% endif %} 
 "{{realm}}" *-- "{{client.clientId}}"
+{% if client.description and note %}note left: {{client.description}}{% endif %}
 {% endif %}
 {% endfor %}
 
@@ -104,7 +109,14 @@ new ResourceOwnerPassword({
 
             },
         }).getBody().toString()
-        let puml = R.renderString(template, JSON.parse(keycloak)).replace(/^\s*[\r\n]/gm, "")
+
+        let source=JSON.parse(keycloak)
+        
+        if(argv.n){
+            source.note=true
+        }
+
+        let puml = R.renderString(template,source ).replace(/^\s*[\r\n]/gm, "")
         if (argv.o) {
             fs.writeFileSync(argv.o, puml)
         }
