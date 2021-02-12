@@ -38,13 +38,12 @@ npm install
 ## Usage
 
 ```
-node index.js -u {{user}} -p {{password}} -s {{keycloak server url}} -m {{realm name}} -o {{realm name}}.puml
-# -n to enable notes
+node index.js -h
 ```
 example:
 ```
 docker run --rm -d  -p 8180:8080 -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak jboss/keycloak
-node index.js -u keycloak -p keycloak -s http://localhost:8180 -m master -o master.puml
+node index.js -u keycloak -p keycloak -s http://localhost:8180 -r master -o master.puml -f "(test|test1)"
 code master.puml
 ```
 
@@ -59,13 +58,14 @@ We use [SemVer](http://semver.org/) for versioning.
 * Manage roles, realm, client
 * Filter default clients and roles
 * Convert description to notes using `-n` option
-
+* Add help command
+* Add regexp filter
+* Create a standalone version 
+* Add options to filter default clients and roles
 
 ## TODO
 
-* Create a standalone version
 * Improve roles management
-* Add options to filter default clients and roles
 
 ## Authors
 

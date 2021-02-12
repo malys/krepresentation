@@ -3,12 +3,61 @@
  * ex: node D:\Developpement\archi\all-modules\common-stuffs\project\keycloakRepresentation\index.js -u %USERNAME% -p xxx -s https://xxx:8443 -m xxx -o test.puml
  * open test.puml with platuml viewer
  */
+const debug = require('debug')('keycloak')
 const R = require('nunjucks')
-const argv = require('yargs').argv;
+const argv = require("yargs")(process.argv.slice(2))
+    .usage('Usage: $0 [options]')
+    .example('$0 -u %USERNAME% -p xxx -s https://localhost:8443 -m master -o master.puml', 'generate plantuml Keycloak realm representation')
+    .alias('f', 'filter')
+    .nargs('f', 1)
+    .describe('f', 'Filter with regexp (unsensitive to case) Keycloak object by name')
+    .alias('n', 'note')
+    .nargs('n', 0)
+    .describe('n', 'Generate notes with description')
+    .alias('o', 'output')
+    .nargs('o', 1)
+    .describe('o', 'path of plantuml export')
+    .alias('u', 'user')
+    .nargs('u', 1)
+    .describe('u', 'Keycloak user')
+    .demandOption(['u'])
+    .alias('p', 'password')
+    .nargs('p', 1)
+    .describe('p', 'Keycloak user\'s password')
+    .demandOption(['p'])
+    .alias('s', 'server')
+    .nargs('s', 1)
+    .describe('s', 'Keycloak server name')
+    .demandOption(['s'])
+    .alias('r', 'realm')
+    .nargs('r', 1)
+    .describe('r', 'Keycloak realm name to represent')
+    .demandOption(['r'])
+    .help('h')
+    .alias('h', 'help')
+    .argv
+
 const fs = require('fs')
-//let keycloak = JSON.parse(fs.readFileSync('./monetique.json'))
 const request = require('sync-request');
 const ResourceOwnerPassword = require('simple-oauth2').ResourceOwnerPassword;
+
+
+let filterUnit = (data, attribute, regex) => data.filter(d => {
+    let result=new RegExp(regex, "i").test(d[attribute])
+    if(!result) debug('remove client',d[attribute])
+    return result 
+})
+
+let filter = (data, regex) => {
+    data.roles.realm = filterUnit(data.roles.realm, 'name', regex)
+    Object.keys(data.roles.client).forEach(c => {
+        if (!new RegExp(regex, 'i').test(c)) {
+            debug(`Remove client roles for ${c}`)
+            delete data.roles.client[c]
+        }
+    })
+    data.clients = filterUnit(data.clients,'clientId', regex)
+}
 
 const template = `
 @startuml
@@ -86,7 +135,7 @@ const tokenParams = {
     username: argv.u || process.env.USERNAME,
     password: argv.p
 };
-let realm = argv.m
+let realm = argv.r || 'master'
 new ResourceOwnerPassword({
         client: {
             id: 'admin-cli',
@@ -110,17 +159,22 @@ new ResourceOwnerPassword({
             },
         }).getBody().toString()
 
-        let source=JSON.parse(keycloak)
-        
-        if(argv.n){
-            source.note=true
-        }
+        let source = JSON.parse(keycloak)
 
-        let puml = R.renderString(template,source ).replace(/^\s*[\r\n]/gm, "")
+        if (argv.n) {
+            debug("Notes enabled")
+            source.note = true
+        }
+        if (argv.f) {
+            debug("Filter enabled " + argv.f)
+            filter(source, argv.f)
+        }
+        let puml = R.renderString(template, source).replace(/^\s*[\r\n]/gm, "")
         if (argv.o) {
+            debug("Export enabled " + argv.o)
             fs.writeFileSync(argv.o, puml)
         }
-        console.log(puml)
+        //debug(puml)
     }, (failure) => {
         console.error(failure)
     })
