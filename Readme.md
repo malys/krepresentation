@@ -32,7 +32,8 @@ This service would make easier understanding and conception of authentication pr
 ## Installing
 
 ```
-npm install krepresentation -g
+npm install @malys/krepresentation -g
+npx @malys/krepresentation
 ```
 
 ## Usage
