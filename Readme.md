@@ -1,5 +1,5 @@
 
-# Keycloak-graphical-representation
+# Keycloak realm graphical representation
 
 The main goal of this project is to generate quick representation of realm configuration based on plantuml.
 This service would make easier understanding and conception of authentication process with Keycloak.
@@ -17,7 +17,7 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
-    - [0.1.0 (Work in progress)](#010-work-in-progress)
+    - [0.1.0](#010-work-in-progress)
   - [TODO](#todo)
   - [Authors](#authors)
 
@@ -32,18 +32,18 @@ This service would make easier understanding and conception of authentication pr
 ## Installing
 
 ```
-npm install
+npm install krepresentation -g
 ```
 
 ## Usage
 
 ```
-node index.js -h
+krepresentation -h
 ```
 example:
 ```
 docker run --rm -d  -p 8180:8080 -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak jboss/keycloak
-node index.js -u keycloak -p keycloak -s http://localhost:8180 -r master -o master.puml -f "(test|test1)"
+krepresentation -u keycloak -p keycloak -s http://localhost:8180 -r master -o master.puml -f "(test|test1)"
 code master.puml
 ```
 
@@ -53,7 +53,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Changelog
 
-### 0.1.0 (Work in progress)
+### 0.1.0
 
 * Manage roles, realm, client
 * Filter default clients and roles
@@ -65,7 +65,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## TODO
 
-* Improve roles management
+* Improve roles representation
 
 ## Authors
 
