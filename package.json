@@ -1,5 +1,5 @@
 {
-  "name": "@malys/krepresentation",
+  "name": "@malysus/krepresentation",
   "version": "0.1.0",
   "description": "Generate quick representation of keycloak realm configuration based on plantuml",
   "main": "index.js",
@@ -10,13 +10,13 @@
     "krepresentation": "./bin/krepresentation.js"
   },
   "preferGlobal": true,
-  "author": "malys <mays@mageos.com>",
+  "author": "malys",
   "license": "ISC",
   "dependencies": {
+    "debug": "^4.3.1",
     "nunjucks": "^3.2.2",
     "simple-oauth2": "^4.2.0",
     "sync-request": "^6.1.0",
-    "yargs": "^16.2.0",
-    "debug":"^4.3.1"
+    "yargs": "^16.2.0"
   }
 }
