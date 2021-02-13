@@ -10,14 +10,14 @@ This service would make easier understanding and conception of authentication pr
 ## Table of Contents
 <details><summary>display</summary>
 
-- [Keycloak-graphical-representation](#keycloak-graphical-representation)
+- [Keycloak realm graphical representation](#keycloak-realm-graphical-representation)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
-    - [0.1.0](#010-work-in-progress)
+    - [0.1.0](#010)
   - [TODO](#todo)
   - [Authors](#authors)
 
@@ -32,14 +32,16 @@ This service would make easier understanding and conception of authentication pr
 ## Installing
 
 ```
-npm install @malys/krepresentation -g
-npx @malys/krepresentation
+npm install @malysus/krepresentation -g
+npx @malysus/krepresentation
 ```
 
 ## Usage
 
 ```
 krepresentation -h
+or
+npx @malysus/krepresentation -h
 ```
 example:
 ```
