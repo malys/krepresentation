@@ -17,6 +17,7 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
+    - [0.3.0](#030)
     - [0.2.0](#020)
     - [0.1.0](#010)
   - [TODO](#todo)
@@ -46,7 +47,7 @@ npx @malysus/krepresentation -h
 example:
 ```
 docker run --rm -d  -p 8180:8080 -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak jboss/keycloak
-krepresentation -u keycloak -p keycloak -s http://localhost:8180 -r master -o master.puml -f "(test|test1)"
+krepresentation -u keycloak -p keycloak -s http://localhost:8180 -r master -o example/master.puml -o example/master.png -f "(test|test1)"
 code master.puml
 ```
 
@@ -55,6 +56,11 @@ code master.puml
 We use [SemVer](http://semver.org/) for versioning. 
 
 ## Changelog
+
+### 0.3.0
+
+* Support plantuml export (svg|png)
+* fix bugs
 
 ### 0.2.0
 

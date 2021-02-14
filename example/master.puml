@@ -1,1 +1,106 @@
-@startumlclass master << (R,orchid) Realm >> {}class "admin" << (r,Chartreuse) Role >> {    {static} scopeParamRequired:        {static} composite: true  }"master" *-- "admin"class "create-realm" << (r,Chartreuse) Role >> {    {static} scopeParamRequired:        {static} composite: false  }"master" *-- "create-realm"class "query-groups" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "query-groups"class "create-client" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "create-client"class "view-realm" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "view-realm"class "view-users" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: true      {static} clientRole: true  }"master-realm" *-- "view-users"class "view-identity-providers" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "view-identity-providers"class "manage-clients" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-clients"class "manage-events" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-events"class "manage-realm" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-realm"class "query-users" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "query-users"class "view-authorization" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "view-authorization"class "query-realms" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "query-realms"class "manage-authorization" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-authorization"class "manage-users" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-users"class "query-clients" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "query-clients"class "manage-identity-providers" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "manage-identity-providers"class "impersonation" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "impersonation"class "view-events" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: false      {static} clientRole: true  }"master-realm" *-- "view-events"class "view-clients" << (r,GreenYellow) Role >> {    {static} scopeParamRequired:        {static} composite: true      {static} clientRole: true  }"master-realm" *-- "view-clients"class "account-console" << (C,DarkSlateBlue) Client >> {     {static} standardFlowEnabled: true     {static} publicClient: true            __ scope __        account.manage-account}    "master" *-- "account-console"class "master-realm" << (C,DarkSlateBlue) Client >> {     {static} bearerOnly: true        {static} standardFlowEnabled: true     {static} fullScopeAllowed: true   }    "master" *-- "master-realm"legend right|<color:#black>**Legend**</color> ||<color:#orchid>Realm roles </color>||<color:#DarkSlateBlue>Client</color>||<color:#LightBlue>Client template </color>||<color:#GreenYellow>Client roles </color>|endlegend@enduml
+@startuml
+class master << (R,orchid) Realm >> {
+}
+class "admin" << (r,Chartreuse) Role >> {
+{static} composite: true
+}
+"master" *-- "admin"
+class "create-realm" << (r,Chartreuse) Role >> {
+}
+"master" *-- "create-realm"
+class "manage-realm" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-realm"
+class "view-identity-providers" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "view-identity-providers"
+class "manage-authorization" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-authorization"
+class "manage-clients" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-clients"
+class "manage-users" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-users"
+class "create-client" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "create-client"
+class "manage-events" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-events"
+class "view-events" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "view-events"
+class "manage-identity-providers" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "manage-identity-providers"
+class "view-authorization" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "view-authorization"
+class "view-users" << (r,GreenYellow) Role >> {
+{static} composite: true
+{static} clientRole: true
+}
+"master-realm" *-- "view-users"
+class "query-realms" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "query-realms"
+class "query-groups" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "query-groups"
+class "view-clients" << (r,GreenYellow) Role >> {
+{static} composite: true
+{static} clientRole: true
+}
+"master-realm" *-- "view-clients"
+class "query-clients" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "query-clients"
+class "impersonation" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "impersonation"
+class "view-realm" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "view-realm"
+class "query-users" << (r,GreenYellow) Role >> {
+{static} clientRole: true
+}
+"master-realm" *-- "query-users"
+class "account-console" << (C,DarkSlateBlue) Client >> {
+{static} standardFlowEnabled: true
+{static} publicClient: true
+__ scope __
+account.manage-account
+}
+"master" *-- "account-console"
+class "master-realm" << (C,DarkSlateBlue) Client >> {
+{static} bearerOnly: true
+{static} standardFlowEnabled: true
+{static} fullScopeAllowed: true
+}
+"master" *-- "master-realm"
+legend right
+|<color:#black>**Legend**</color> |
+|<color:#orchid>Realm </color>|
+|<color:#Chartreuse>Realm roles </color>|
+|<color:#DarkSlateBlue>Client</color>|
+|<color:#GreenYellow>Client roles </color>|
+|<color:#LightBlue>Client template </color>|
+endlegend
+@enduml

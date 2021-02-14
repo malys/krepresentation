@@ -2,9 +2,9 @@
 {% if 'broker' != roleC and 'offline_access' != roleC and 'uma_authorization'!= roleC and 'realm-management' != roleC and 'account' != roleC%}
 {% for role in detail %}
 class "{{role.name}}" << (r,GreenYellow) Role >> {
-    {static} scopeParamRequired: {{role.scopeParamRequired}}   
-    {static} composite: {{role.composite}}  
-    {static} clientRole: {{role.clientRole}}  
+    {% if role.scopeParamRequired %}{static} scopeParamRequired: {{role.scopeParamRequired}}{% endif %}
+    {% if role.composite %}{static} composite: {{role.composite}}{% endif %}
+    {% if role.clientRole %}{static} clientRole: {{role.clientRole}}{% endif %}
 }
 "{{roleC}}" *-- "{{role.name}}"
 {% if role.description and note %}note left: {{role.description}}{% endif %}

@@ -3,14 +3,14 @@
  * ex: node D:\Developpement\archi\all-modules\common-stuffs\project\keycloakRepresentation\index.js -u %USERNAME% -p xxx -s https://xxx:8443 -m xxx -o test.puml
  * open test.puml with platuml viewer
  */
-const TEMPLATE_NAME = 'main.jinja2'
-const debug = require('debug')('keycloak')
-const R = require('nunjucks')
+const debug = require('debug')('rkeycloak')
 const argv = require('./params')
 const fs = require('fs')
 const request = require('sync-request');
 const ResourceOwnerPassword = require('simple-oauth2').ResourceOwnerPassword;
+const RENDER = require('./render')
 
+RENDER.checkInstall()
 
 let filterUnit = (data, attribute, regex) => data.filter(d => {
     let result = new RegExp(regex, "i").test(d[attribute])
@@ -76,13 +76,7 @@ new ResourceOwnerPassword({
         source.legend = (argv.l == 'true')
         debug("Legend " + argv.l)
 
-        R.configure(argv.t, {});
-        let puml = R.render(TEMPLATE_NAME, source).replace(/^\s*[\r\n]/gm, "")
-        if (argv.o) {
-            debug("Export enabled " + argv.o)
-            fs.writeFileSync(argv.o, puml)
-        }
-        //debug(puml)
+        RENDER.render(argv, source)
     }, (failure) => {
         console.error(failure)
     })
