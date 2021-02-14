@@ -1,0 +1,34 @@
+{% for client in clients %}
+{% if 'security-admin-console' != client.clientId and 'admin-cli' != client.clientId and  'broker' != client.clientId and 'account' != client.clientId and 'realm-management' != client.clientId %}
+class "{{client.clientId}}" << (C,DarkSlateBlue) Client >> {
+    {% if client.bearerOnly %} {static} bearerOnly: {{client.bearerOnly}}{% endif %}   
+    {% if client.standardFlowEnabled %} {static} standardFlowEnabled: {{client.standardFlowEnabled}}{% endif %}
+    {% if client.implicitFlowEnabled %} {static} implicitFlowEnabled: {{client.implicitFlowEnabled}}{% endif %}  
+    {% if client.directAccessGrantsEnabled %} {static} directAccessGrantsEnabled: {{client.directAccessGrantsEnabled}}{% endif %}
+    {% if client.serviceAccountsEnabled %} {static} serviceAccountsEnabled: {{client.serviceAccountsEnabled}}{% endif %} 
+    {% if client.publicClient %} {static} publicClient: {{client.publicClient}}{% endif %}    
+    {% if client.fullScopeAllowed %} {static} fullScopeAllowed: {{client.fullScopeAllowed}}{% endif %}   
+    {% for cr in client.defaultRoles %}
+    {static} role: {{cr}}
+    {% endfor %}
+    {% for scope,detail in clientScopeMappings %}
+    {% for d in detail %}
+    {% if client.clientId == d.client  %}
+        __ scope __
+        {% for r in d.roles %}
+        {{scope}}.{{r}}
+        {% endfor %}
+    {% endif %}    
+    {% endfor %}
+    {% endfor %}
+}    
+{% if client.clientTemplate %}
+class "{{client.clientTemplate}}" << (T,LightBlue) Template >> { 
+}
+"{{realm}}" *-- "{{client.clientTemplate}}"
+"{{client.clientTemplate}}" <|-- "{{client.clientId}}"
+{% endif %} 
+"{{realm}}" *-- "{{client.clientId}}"
+{% if client.description and note %}note left: {{client.description}}{% endif %}
+{% endif %}
+{% endfor %}

@@ -4,7 +4,7 @@
 The main goal of this project is to generate quick representation of realm configuration based on plantuml.
 This service would make easier understanding and conception of authentication process with Keycloak.
 
-![](example.png)
+![](./example/master.png)
 
 
 ## Table of Contents
@@ -17,6 +17,7 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
+    - [0.2.0](#020)
     - [0.1.0](#010)
   - [TODO](#todo)
   - [Authors](#authors)
@@ -33,7 +34,6 @@ This service would make easier understanding and conception of authentication pr
 
 ```
 npm install @malysus/krepresentation -g
-npx @malysus/krepresentation
 ```
 
 ## Usage
@@ -55,6 +55,11 @@ code master.puml
 We use [SemVer](http://semver.org/) for versioning. 
 
 ## Changelog
+
+### 0.2.0
+
+* Add template override `-t`
+* Add legend `-l`
 
 ### 0.1.0
 

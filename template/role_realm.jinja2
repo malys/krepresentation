@@ -1,0 +1,12 @@
+{% for role in roles.realm %}
+{% if 'offline_access' != role.name and 'uma_authorization'!= role.name and 'realm-management' != role.name %}
+class "{{role.name}}" << (r,Chartreuse) Role >> {
+    {static} scopeParamRequired: {{role.scopeParamRequired}}   
+    {static} composite: {{role.composite}}  
+}
+"{{realm}}" *-- "{{role.name}}"
+{% if role.description and note %}
+note left: {{role.description}}
+{% endif %}
+{% endif %}
+{% endfor %}

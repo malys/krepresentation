@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-var kRepresentation = require('../index.js');
+let kRepresentation = require('../src/index.js');

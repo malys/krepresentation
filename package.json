@@ -1,8 +1,8 @@
 {
   "name": "@malysus/krepresentation",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Generate quick representation of keycloak realm configuration based on plantuml",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
