@@ -35,4 +35,5 @@ module.exports = require("yargs")(process.argv.slice(2))
     .default('r', 'master')
     .help('h')
     .alias('h', 'help')
+    .completion()
     .argv
