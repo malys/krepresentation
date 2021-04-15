@@ -17,10 +17,13 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
+    - [0.3.3](#033)
     - [0.3.0](#030)
     - [0.2.0](#020)
     - [0.1.0](#010)
   - [TODO](#todo)
+  - [Limitations](#limitations)
+    - [I want to generate huge diagrams!](#i-want-to-generate-huge-diagrams)
   - [Authors](#authors)
 
 </details>
@@ -57,6 +60,10 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Changelog
 
+### 0.3.3
+
+* Update plantuml dependency
+
 ### 0.3.0
 
 * Support plantuml export (svg|png)
@@ -80,6 +87,22 @@ We use [SemVer](http://semver.org/) for versioning.
 ## TODO
 
 * Improve roles representation
+
+## Limitations
+
+### [I want to generate huge diagrams!](https://plantuml.com/en/faq)
+
+I want to generate huge diagrams!Back to topEdit using Dokuwiki syntaxEdit using Asciidoc syntaxEdit using Markdown syntax
+PlantUML limits image width and height to 4096. There is a environment variable that you can set to override this limit: PLANTUML_LIMIT_SIZE. You have to define this variable before launching PlantUML, something like:
+
+set PLANTUML_LIMIT_SIZE=8192
+or
+
+setenv PLANTUML_LIMIT_SIZE 8192
+Another way is an option in the command line:
+
+java -DPLANTUML_LIMIT_SIZE=8192 -jar /path/to/plantuml.jar ...
+Note that if you generate very big diagrams, (for example, something like 20 000 x 10 000 pixels), you can have some memory issues. The solution is to add this parameter to the java vm : -Xmx1024m.
 
 ## Authors
 

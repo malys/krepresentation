@@ -1,6 +1,6 @@
 {
   "name": "@malysus/krepresentation",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Generate quick representation of keycloak realm configuration based on plantuml",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "debug": "^4.3.1",
-    "node-plantuml": "^0.9.0",
+    "node-plantuml-latest": "^2.1.0",
     "nunjucks": "^3.2.2",
     "simple-oauth2": "^4.2.0",
     "sync-request": "^6.1.0",

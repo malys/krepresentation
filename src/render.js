@@ -1,7 +1,7 @@
 const TEMPLATE_NAME = 'main.jinja2'
 const debug = require('debug')('rkeycloak')
 const R = require('nunjucks')
-const plantuml = require('node-plantuml')
+const plantuml = require('node-plantuml-latest')
 const path = require('path')
 const fs = require('fs')
 
