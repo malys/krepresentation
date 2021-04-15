@@ -1,0 +1,14 @@
+__ roles __
+{% for k,v in client.additionalRoles.clientMappings %}
+    {% for r in v.mappings %}
+        {% if 'broker' != k and 'offline_access' != k and 'uma_authorization'!= k and 'realm-management' != k and 'account' != k %}
+        {{k}}.{{r.name}}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% for r in client.additionalRoles.realmMappings %}
+    {% if 'broker' != r.name and 'offline_access' != r.name and 'uma_authorization'!= r.name and 'realm-management' != r.name and 'account' != k %}
+        {static} {{r.name}}
+    {% endif %}
+{% endfor %}

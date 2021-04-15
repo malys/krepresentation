@@ -6,7 +6,7 @@ class "{{role.name}}" << (r,Chartreuse) Role >> {
 }
 "{{realm}}" *-- "{{role.name}}"
 {% if role.description and note %}
-note left: {{role.description}}
+note bottom: {{role.description}}
 {% endif %}
 {% endif %}
 {% endfor %}

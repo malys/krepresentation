@@ -17,6 +17,7 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
+    - [0.4.0](#040)
     - [0.3.3](#033)
     - [0.3.0](#030)
     - [0.2.0](#020)
@@ -59,6 +60,12 @@ code master.puml
 We use [SemVer](http://semver.org/) for versioning. 
 
 ## Changelog
+
+### 0.4.0
+
+* Display roles
+* Add legend `-k` to skip roles generation
+* Group service accounts
 
 ### 0.3.3
 

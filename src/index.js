@@ -39,6 +39,24 @@ if (!fs.existsSync(argv.t)) {
     process.exit(1);
 }
 
+let getRoles=(host,access_token,id)=>{
+    let suser = JSON.parse(request('GET', `${host}/auth/admin/realms/${realm}/clients/${id}/service-account-user`, {
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: 'Bearer ' + access_token
+
+        },
+    }).getBody().toString())
+
+    return JSON.parse(request('GET', `${host}/auth/admin/realms/${realm}/users/${suser.id}/role-mappings`, {
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: 'Bearer ' + access_token
+
+        },
+    }).getBody().toString())
+}
+
 new ResourceOwnerPassword({
     client: {
         id: 'admin-cli',
@@ -64,6 +82,7 @@ new ResourceOwnerPassword({
 
         let source = JSON.parse(keycloak)
 
+
         if (argv.n) {
             debug("Notes enabled")
             source.note = true
@@ -76,6 +95,16 @@ new ResourceOwnerPassword({
         source.legend = (argv.l == 'true')
         debug("Legend " + argv.l)
 
+        source.skipRoles = argv.k
+        debug("skipRoles " + argv.k)
+
+        if(!source.skipRoles){
+            source.clients.forEach(c => {
+                if (c.serviceAccountsEnabled) c.additionalRoles=getRoles(argv.s,access_token,c.id)
+            });
+        }
+
+        debug(JSON.stringify(source))
         RENDER.render(argv, source)
     }, (failure) => {
         console.error(failure)

@@ -1,13 +1,28 @@
 {% for roleC,detail in roles.client %}
-{% if 'broker' != roleC and 'offline_access' != roleC and 'uma_authorization'!= roleC and 'realm-management' != roleC and 'account' != roleC%}
-{% for role in detail %}
-class "{{role.name}}" << (r,GreenYellow) Role >> {
-    {% if role.scopeParamRequired %}{static} scopeParamRequired: {{role.scopeParamRequired}}{% endif %}
-    {% if role.composite %}{static} composite: {{role.composite}}{% endif %}
-    {% if role.clientRole %}{static} clientRole: {{role.clientRole}}{% endif %}
-}
-"{{roleC}}" *-- "{{role.name}}"
-{% if role.description and note %}note left: {{role.description}}{% endif %}
-{% endfor %}
-{% endif %}
+    {% set currentClient= 'none' %}
+    {% for client in clients %}
+        
+        {% if client.clientId == roleC %}
+            {% set currentClient = client %}
+        {% endif %}
+    {% endfor %}
+
+    {% if 'broker' != roleC and 'offline_access' != roleC and 'uma_authorization'!= roleC and 'realm-management' != roleC and 'account' != roleC %}
+        {% for role in detail %}
+            
+            class "{{role.name}}" << (r,GreenYellow) Role >> {
+                {% if role.scopeParamRequired %}{static} scopeParamRequired: {{role.scopeParamRequired}}{% endif %}
+                {% if role.composite %}{static} composite: {{role.composite}}{% endif %}
+                {% if role.clientRole %}{static} clientRole: {{role.clientRole}}{% endif %}
+            }
+
+            {% if currentClient and currentClient.serviceAccountsEnabled  %}
+                "service-account.{{roleC}}" *-- "{{role.name}}"
+            {% else %}
+                "{{roleC}}" *-- "{{role.name}}"
+            {% endif %}
+
+            {% if role.description and note %}note bottom: {{role.description}}{% endif %}
+        {% endfor %}
+    {% endif %}
 {% endfor %}

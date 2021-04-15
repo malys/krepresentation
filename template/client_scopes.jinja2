@@ -1,0 +1,10 @@
+{% for scope,detail in clientScopeMappings %}
+    {% for d in detail %}
+        {% if client.clientId == d.client  %}
+        __ scope __
+            {% for r in d.roles %}
+                {{scope}}.{{r}}
+            {% endfor %}
+        {% endif %}    
+    {% endfor %}
+{% endfor %}

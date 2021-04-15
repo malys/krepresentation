@@ -1,0 +1,17 @@
+{% set isCreated = false %}
+{% for template in templates %}
+    {% if client.clientTemplate == template %}{% set isCreated = true %} {% endif %}  
+{% endfor %}
+
+{% if isCreated == false %}
+    class "{{client.clientTemplate}}" << (T,LightBlue) Template >> { 
+    }
+    "{{realm}}" *-- "{{client.clientTemplate}}"
+    {% set templates = (templates.push(client.clientTemplate), templates) %}
+{% endif %}  
+
+{% if client.serviceAccountsEnabled %}
+    "{{client.clientTemplate}}" <|-- "service-account.{{client.clientId}}"
+{% else %} 
+    "{{client.clientTemplate}}" <|-- "{{client.clientId}}"
+{% endif %}  
