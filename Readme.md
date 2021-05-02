@@ -17,15 +17,11 @@ This service would make easier understanding and conception of authentication pr
   - [Usage](#usage)
   - [Versioning](#versioning)
   - [Changelog](#changelog)
-    - [0.4.0](#040)
-    - [0.3.3](#033)
-    - [0.3.0](#030)
-    - [0.2.0](#020)
-    - [0.1.0](#010)
-  - [TODO](#todo)
   - [Limitations](#limitations)
     - [I want to generate huge diagrams!](#i-want-to-generate-huge-diagrams)
+  - [Contributing](#contributing)
   - [Authors](#authors)
+  - [License](#license)
 
 </details>
 
@@ -61,39 +57,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Changelog
 
-### 0.4.0
-
-* Display roles
-* Add legend `-k` to skip roles generation
-* Group service accounts
-
-### 0.3.3
-
-* Update plantuml dependency
-
-### 0.3.0
-
-* Support plantuml export (svg|png)
-* fix bugs
-
-### 0.2.0
-
-* Add template override `-t`
-* Add legend `-l`
-
-### 0.1.0
-
-* Manage roles, realm, client
-* Filter default clients and roles
-* Convert description to notes using `-n` option
-* Add help command
-* Add regexp filter
-* Create a standalone version 
-* Add options to filter default clients and roles
-
-## TODO
-
-* Improve roles representation
+See [CHANGELOG.md](./CHANGELOG.md)
 
 ## Limitations
 
@@ -111,6 +75,14 @@ Another way is an option in the command line:
 java -DPLANTUML_LIMIT_SIZE=8192 -jar /path/to/plantuml.jar ...
 Note that if you generate very big diagrams, (for example, something like 20 000 x 10 000 pixels), you can have some memory issues. The solution is to add this parameter to the java vm : -Xmx1024m.
 
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 ## Authors
 
 Malys
+
+## License
+
+See [LICENSE](./LICENSE)
